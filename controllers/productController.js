@@ -20,8 +20,10 @@ module.exports = {
     },
     show: async (req, res) => {
         try {
+            const id = req.params.id
+
             // Select operation
-            const data = await db.select('*').from('products').where('id', req.params.id).first();
+            const data = productModel.getProductById(id);
     
             if(!data){
                 res.json({ status: 404, message: 'Product not found' });
